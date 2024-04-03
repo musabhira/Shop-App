@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopapp/features/Authentication/presentation/providers/auth_provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   static const routePath = '/login';
-  const LoginPage({Key? key});
+  const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final googleauth = ref.read(authProvider.notifier);
     return Scaffold(
       body: SizedBox(
         width: double.infinity,
@@ -33,7 +36,9 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  googleauth.signinWithGoogle(context);
+                },
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(

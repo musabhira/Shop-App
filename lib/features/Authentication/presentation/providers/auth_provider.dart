@@ -9,13 +9,13 @@ import 'package:shopapp/features/Authentication/domain/repository/auth_repositor
 import 'package:shopapp/features/Authentication/domain/usecases/google_signin_usecase.dart';
 import 'package:shopapp/features/Authentication/domain/usecases/signout_usecase.dart';
 import 'package:shopapp/features/Authentication/presentation/page/login_page.dart';
+import 'package:shopapp/features/Authentication/presentation/providers/auth_state.dart';
 import 'package:shopapp/features/home/presentation/page/home_page.dart';
-import 'package:shopapp/features/home/presentation/providers/auth_state.dart';
 
 part 'auth_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class Movie extends _$Movie {
+class Auth extends _$Auth {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   final TextEditingController namecontroller = TextEditingController();

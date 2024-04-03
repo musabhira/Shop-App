@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_provider.dart';
+part of 'light_theme.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authHash() => r'85856e4320778256ab7f543ca7c096ea1feb3a08';
+String _$lightThemeHash() => r'fd498583e4113886fcee84382d4d947c34c996de';
 
-/// See also [Auth].
-@ProviderFor(Auth)
-final authProvider = NotifierProvider<Auth, AuthState>.internal(
-  Auth.new,
-  name: r'authProvider',
+/// See also [lightTheme].
+@ProviderFor(lightTheme)
+final lightThemeProvider = AutoDisposeProvider<ThemeData>.internal(
+  lightTheme,
+  name: r'lightThemeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$authHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$lightThemeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$Auth = Notifier<AuthState>;
+typedef LightThemeRef = AutoDisposeProviderRef<ThemeData>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
