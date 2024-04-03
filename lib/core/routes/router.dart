@@ -1,11 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopapp/features/Authentication/presentation/page/login_page.dart';
+import 'package:shopapp/features/home/presentation/page/home_page.dart';
 
 part 'router.g.dart';
 
 final _router = GoRouter(
-  initialLocation: LoginPage.routePath,
+  initialLocation: HomePage.routePath,
   routes: [
     // GoRoute(
     //   path: HomePage.routePath,
@@ -18,6 +19,10 @@ final _router = GoRouter(
     //     return null;
     //   },
     // ),
+    GoRoute(
+      path: HomePage.routePath,
+      builder: (context, state) => const HomePage(),
+    ),
     GoRoute(
       path: LoginPage.routePath,
       builder: (context, state) => const LoginPage(),

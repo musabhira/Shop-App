@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:shopapp/features/Authentication/presentation/page/login_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopapp/core/routes/router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const LoginPage(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: ref.watch(routerProvider),
     );
   }
 }
