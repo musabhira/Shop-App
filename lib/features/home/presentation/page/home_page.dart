@@ -16,7 +16,7 @@ class HomePage extends ConsumerWidget {
     final constants = ref.watch(homeConstantsProvider);
     final theme = AppTheme.of(context);
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 240, 237, 237),
+      backgroundColor: theme.colors.textSubtle,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Padding(
@@ -82,12 +82,10 @@ class HomePage extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(theme.spaces.space_100),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey
-                          .withOpacity(0.5), // Adjust shadow color and opacity
-                      spreadRadius: 1, // Adjust spread radius
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
                       blurRadius: 2,
-                      offset: const Offset(0,
-                          1), // Adjust shadow position [horizontal, vertical]
+                      offset: const Offset(0, 1),
                     ),
                   ],
                 ),
@@ -113,14 +111,15 @@ class HomePage extends ConsumerWidget {
                           borderRadius:
                               BorderRadius.circular(theme.spaces.space_100),
                           gradient: theme.colors.secondary),
-                      child: const Icon(Icons.search, color: Colors.white),
+                      child:
+                          Icon(Icons.search, color: theme.colors.textInverse),
                     )
                   ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 16,
+            SizedBox(
+              height: theme.spaces.space_200,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_300),
@@ -176,7 +175,10 @@ class HomePage extends ConsumerWidget {
                 leftText: constants.cleanServicestxt,
                 rightText: constants.seeAlltxt,
                 icon: Icons.arrow_forward_ios_outlined),
-            const HorizontalScrollWidget()
+            const HorizontalScrollWidget(),
+            SizedBox(
+              height: theme.spaces.space_900 * 2,
+            )
           ],
         ),
       ),

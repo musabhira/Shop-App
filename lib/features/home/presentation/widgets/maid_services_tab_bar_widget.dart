@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:shopapp/core/themes/app_theme.dart';
 
 class MaidServicesTapbarWidget extends StatelessWidget {
   const MaidServicesTapbarWidget({super.key});
   @override
   Widget build(BuildContext context) {
+    final theme = AppTheme.of(context);
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 249, 249, 249),
+      backgroundColor: const Color.fromARGB(255, 240, 237, 237),
       body: ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index) {
@@ -22,7 +24,8 @@ class MaidServicesTapbarWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 16, right: 15),
+                      padding: EdgeInsets.only(
+                          left: theme.spaces.space_200, right: 15),
                       child: Container(
                         height: MediaQuery.sizeOf(context).height / 9,
                         width: MediaQuery.sizeOf(context).width / 4.20,
@@ -35,7 +38,7 @@ class MaidServicesTapbarWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 18),
+                      padding: EdgeInsets.only(top: theme.spaces.space_250),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -43,30 +46,32 @@ class MaidServicesTapbarWidget extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.star,
                                 size: 17,
                                 color: Colors.amber,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 6),
+                                padding: EdgeInsets.only(
+                                    left: theme.spaces.space_100),
                                 child: Text(
                                   "(4.2/5) 23 orders",
-                                  style: TextStyle(color: Colors.grey),
+                                  style:
+                                      TextStyle(color: theme.colors.textSubtle),
                                 ),
                               ),
                             ],
                           ),
-                          Text(
+                          const Text(
                             "Bathroom Cleaning",
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
-                          Text(
+                          const Text(
                             "60 Minutes",
                             style: TextStyle(color: Colors.grey),
                           ),
-                          Text(
+                          const Text(
                             "₹ 499.00",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w800),
@@ -83,13 +88,13 @@ class MaidServicesTapbarWidget extends StatelessWidget {
                   child: Container(
                     height: MediaQuery.sizeOf(context).height / 23,
                     width: MediaQuery.sizeOf(context).width / 5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15)),
                       color: Colors.green,
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Add +",
                         style: TextStyle(

@@ -5,6 +5,7 @@ import 'package:shopapp/core/widget/bottom_navigation_bar.dart';
 import 'package:shopapp/features/Authentication/presentation/page/login_page.dart';
 import 'package:shopapp/features/Authentication/presentation/page/login_phone_number_page.dart';
 import 'package:shopapp/features/Authentication/presentation/page/otp_verfication_page.dart';
+import 'package:shopapp/features/home/presentation/page/cart_page.dart';
 import 'package:shopapp/features/home/presentation/page/clean_service_page.dart';
 import 'package:shopapp/features/home/presentation/page/home_page.dart';
 import 'package:shopapp/features/home/presentation/page/profile_page.dart';
@@ -32,6 +33,10 @@ final _router = GoRouter(
     GoRoute(
       path: ProfilePage.routePath,
       builder: (context, state) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: CartPage.routePath,
+      builder: (context, state) => const CartPage(),
     ),
     GoRoute(
       path: OtpVerificationPage.routePath,

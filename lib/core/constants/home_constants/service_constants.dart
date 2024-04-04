@@ -8,6 +8,7 @@ class ServiceConstants {
   final maidServicetxt = 'Maid Services';
   final carcleaningtxt = 'Car Cleaning';
   final addtxt = 'Add +';
+  final viewCarttxt = 'VIEW CART';
 }
 
 @riverpod

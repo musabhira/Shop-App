@@ -21,7 +21,7 @@ final _lightTheme = ThemeData(
       text: AppColorPalettes.black500,
       textInverse: AppColorPalettes.white500,
       textSubtle: AppColorPalettes.gray300,
-      textSubtlest: AppColorPalettes.grey400,
+      textSubtlest: AppColorPalettes.red400,
       textDisabled: AppColorPalettes.grey350,
       bottomNavBorder: AppColorPalettes.green100,
     ),
