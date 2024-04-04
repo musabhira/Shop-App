@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColorExtension extends ThemeExtension<AppColorExtension> {
   final Color primary;
-  final Color secondary;
+  final LinearGradient secondary;
   final Color text;
   final Color textInverse;
   final Color textSubtle;
@@ -24,7 +24,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
   @override
   ThemeExtension<AppColorExtension> copyWith({
     Color? primary,
-    Color? secondary,
+    LinearGradient? secondary,
     Color? text,
     Color? textInverse,
     Color? textSubtle,
@@ -53,7 +53,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
 
     return AppColorExtension(
       primary: Color.lerp(primary, other.primary, t)!,
-      secondary: Color.lerp(secondary, other.secondary, t)!,
+      secondary: LinearGradient.lerp(secondary, other.secondary, t)!,
       text: Color.lerp(text, other.text, t)!,
       textInverse: Color.lerp(textInverse, other.textInverse, t)!,
       textSubtle: Color.lerp(textSubtle, other.textSubtle, t)!,

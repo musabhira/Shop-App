@@ -12,10 +12,14 @@ final _lightTheme = ThemeData(
   brightness: Brightness.light,
   extensions: [
     AppColorExtension(
-      primary: AppColorPalettes.red400,
-      secondary: AppColorPalettes.white500,
-      text: AppColorPalettes.blue900,
-      textInverse: AppColorPalettes.gray200,
+      primary: AppColorPalettes.darkgreen,
+      secondary: const LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [AppColorPalettes.green, AppColorPalettes.darkgreen],
+      ),
+      text: AppColorPalettes.black500,
+      textInverse: AppColorPalettes.white500,
       textSubtle: AppColorPalettes.gray300,
       textSubtlest: AppColorPalettes.grey400,
       textDisabled: AppColorPalettes.grey350,

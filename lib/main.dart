@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopapp/core/routes/router.dart';
+import 'package:shopapp/core/themes/light_theme.dart';
 import 'package:shopapp/firebase_options.dart';
 
 Future<void> main() async {
@@ -21,6 +22,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: ref.watch(routerProvider),
+      theme: ref.watch(lightThemeProvider),
     );
   }
 }

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopapp/core/constants/home_constants/home_constants.dart';
+import 'package:shopapp/core/themes/app_theme.dart';
+import 'package:shopapp/features/home/presentation/widgets/circlur_image_widget.dart';
+import 'package:shopapp/features/home/presentation/widgets/green_arrow_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   static const routePath = '/home';
-  const HomePage({Key? key});
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final constants = ref.watch(homeConstantsProvider);
+    final theme = AppTheme.of(context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 240, 237, 237),
       appBar: AppBar(
@@ -23,19 +30,19 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Icon(
+              Icon(
                 Icons.keyboard_arrow_down,
-                color: Colors.green,
+                color: theme.colors.primary,
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.all(8),
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: const Icon(
+                padding: EdgeInsets.all(theme.spaces.space_100),
+                decoration: BoxDecoration(
+                    color: theme.colors.textInverse,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                child: Icon(
                   Icons.shopping_cart,
-                  color: Colors.green,
+                  color: theme.colors.primary,
                 ),
               ),
             ],
@@ -60,23 +67,22 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 16,
+          SizedBox(
+            height: theme.spaces.space_200,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(
-              height: 50, // Adjust the height as needed
+              height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                    8), // Adjust the border radius to make the container rounded
+                borderRadius: BorderRadius.circular(theme.spaces.space_100),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey
                         .withOpacity(0.5), // Adjust shadow color and opacity
                     spreadRadius: 1, // Adjust spread radius
-                    blurRadius: 2, // Adjust blur radius
+                    blurRadius: 2,
                     offset: const Offset(
                         0, 1), // Adjust shadow position [horizontal, vertical]
                   ),
@@ -84,33 +90,26 @@ class HomePage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  const SizedBox(
-                    width: 8,
+                  SizedBox(
+                    width: theme.spaces.space_100,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Search for a service',
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 174, 175, 175)),
+                        hintText: constants.searchhinttxt,
+                        hintStyle: TextStyle(color: theme.colors.textSubtle),
                         border: InputBorder.none,
                       ),
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    padding: const EdgeInsets.all(8),
+                    margin: EdgeInsets.symmetric(
+                        horizontal: theme.spaces.space_100),
+                    padding: EdgeInsets.all(theme.spaces.space_100),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      gradient: LinearGradient(
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft,
-                        colors: [
-                          const Color.fromARGB(255, 1, 124, 5).withOpacity(0.8),
-                          const Color.fromARGB(255, 0, 255, 8),
-                        ],
-                      ),
-                    ),
+                        borderRadius:
+                            BorderRadius.circular(theme.spaces.space_100),
+                        gradient: theme.colors.secondary),
                     child: const Icon(Icons.search, color: Colors.white),
                   )
                 ],
@@ -120,35 +119,54 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Container(
-            color: Colors.white,
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Available Service'),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    // for (int i = 0; i < 4; i++)
-                    Column(
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: const BoxDecoration(
-                            color: Colors.green,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset('assets/images/leaf.png'),
-                        ),
-                        const SizedBox(height: 5),
-                        Text('cleaning')
-                      ],
-                    ),
-                  ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_300),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(theme.spaces.space_100),
+              child: Container(
+                color: Colors.white,
+                width: double.infinity,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: theme.spaces.space_200,
+                      vertical: theme.spaces.space_200),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        constants.availableServicetxt,
+                        style: theme.typography.h700,
+                      ),
+                      SizedBox(height: theme.spaces.space_100),
+                      const Row(
+                        children: [
+                          CircularImageWidget(),
+                          Spacer(),
+                          CircularImageWidget(),
+                          Spacer(),
+                          CircularImageWidget(),
+                          Spacer(),
+                          CircularImageWidget(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: theme.spaces.space_200,
+                      ),
+                      const Row(
+                        children: [
+                          CircularImageWidget(),
+                          Spacer(),
+                          CircularImageWidget(),
+                          Spacer(),
+                          CircularImageWidget(),
+                          Spacer(),
+                          GreenArrowWidget()
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           )
         ],
