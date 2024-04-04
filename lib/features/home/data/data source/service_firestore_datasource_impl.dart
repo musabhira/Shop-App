@@ -13,18 +13,10 @@ class ServiceFireStoreDataSourceImpl implements ServiceFireStoreDataSource {
           toFirestore: (model, _) => model.toFirestore());
 
   @override
-  Stream<List<ServiceModel>> getServices(List<String> userIds) async* {
-    final service = collection
-        .where(Filter.and(
-            Filter.or(Filter('service', isEqualTo: userIds.first),
-                Filter('service', isEqualTo: userIds.last)),
-            Filter.or(Filter('service', isEqualTo: userIds.first),
-                Filter('service', isEqualTo: userIds.last))))
-        .snapshots();
-
-    await for (var snapshot in service) {
-      yield snapshot.docs.map((doc) => doc.data()).toList();
-      // ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+  Stream<List<ServiceModel>> getServices() async* {
+    final serviceStream = collection.snapshots(includeMetadataChanges: true);
+    await for (final services in serviceStream) {
+      yield [for (final service in services.docs) service.data()];
     }
   }
 
