@@ -12,4 +12,5 @@ class AppColorPalettes {
   static const grey1000 = Color.fromARGB(255, 19, 19, 19);
   static const green = Color.fromARGB(255, 62, 241, 8);
   static const darkgreen = Color.fromARGB(255, 28, 121, 0);
+  static const green100 = Color.fromARGB(255, 116, 247, 197);
 }

@@ -23,7 +23,7 @@ final _lightTheme = ThemeData(
       textSubtle: AppColorPalettes.gray300,
       textSubtlest: AppColorPalettes.grey400,
       textDisabled: AppColorPalettes.grey350,
-      bottomNavBorder: AppColorPalettes.grey350.withOpacity(0.2),
+      bottomNavBorder: AppColorPalettes.green100,
     ),
     AppSpaceExtension.fromBaseSpace(8),
     AppTypographyExtension.fromColors(
