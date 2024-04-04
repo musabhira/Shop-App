@@ -4,6 +4,8 @@ import 'package:shopapp/core/constants/home_constants/home_constants.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
 import 'package:shopapp/features/home/presentation/widgets/circlur_image_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/green_arrow_widget.dart';
+import 'package:shopapp/features/home/presentation/widgets/horizontal_scroll_widget.dart';
+import 'package:shopapp/features/home/presentation/widgets/text_with_arrow_widget.dart';
 
 class HomePage extends ConsumerWidget {
   static const routePath = '/home';
@@ -49,127 +51,134 @@ class HomePage extends ConsumerWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 8,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(18),
-              child: SizedBox(
-                width: double.infinity,
-                child: Image.network(
-                  'https://media.gettyimages.com/id/1704221597/vector/green-energy-banner-design-vector-illustration-environment-renewable-energy-clean-energy.jpg?s=612x612&w=gi&k=20&c=rWUhYIUQfsvOgNLCZr55gMtcmDx2MZ3OH-8bwsepugo=',
-                  fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(18),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Image.network(
+                    'https://media.gettyimages.com/id/1704221597/vector/green-energy-banner-design-vector-illustration-environment-renewable-energy-clean-energy.jpg?s=612x612&w=gi&k=20&c=rWUhYIUQfsvOgNLCZr55gMtcmDx2MZ3OH-8bwsepugo=',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: theme.spaces.space_200,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(theme.spaces.space_100),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey
-                        .withOpacity(0.5), // Adjust shadow color and opacity
-                    spreadRadius: 1, // Adjust spread radius
-                    blurRadius: 2,
-                    offset: const Offset(
-                        0, 1), // Adjust shadow position [horizontal, vertical]
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: theme.spaces.space_100,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: constants.searchhinttxt,
-                        hintStyle: TextStyle(color: theme.colors.textSubtle),
-                        border: InputBorder.none,
+            SizedBox(
+              height: theme.spaces.space_200,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(theme.spaces.space_100),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey
+                          .withOpacity(0.5), // Adjust shadow color and opacity
+                      spreadRadius: 1, // Adjust spread radius
+                      blurRadius: 2,
+                      offset: const Offset(0,
+                          1), // Adjust shadow position [horizontal, vertical]
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: theme.spaces.space_100,
+                    ),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: constants.searchhinttxt,
+                          hintStyle: TextStyle(color: theme.colors.textSubtle),
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                        horizontal: theme.spaces.space_100),
-                    padding: EdgeInsets.all(theme.spaces.space_100),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(theme.spaces.space_100),
-                        gradient: theme.colors.secondary),
-                    child: const Icon(Icons.search, color: Colors.white),
-                  )
-                ],
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: theme.spaces.space_100),
+                      padding: EdgeInsets.all(theme.spaces.space_100),
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(theme.spaces.space_100),
+                          gradient: theme.colors.secondary),
+                      child: const Icon(Icons.search, color: Colors.white),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_300),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(theme.spaces.space_100),
-              child: Container(
-                color: Colors.white,
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: theme.spaces.space_200,
-                      vertical: theme.spaces.space_200),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        constants.availableServicetxt,
-                        style: theme.typography.h700,
-                      ),
-                      SizedBox(height: theme.spaces.space_100),
-                      const Row(
-                        children: [
-                          CircularImageWidget(),
-                          Spacer(),
-                          CircularImageWidget(),
-                          Spacer(),
-                          CircularImageWidget(),
-                          Spacer(),
-                          CircularImageWidget(),
-                        ],
-                      ),
-                      SizedBox(
-                        height: theme.spaces.space_200,
-                      ),
-                      const Row(
-                        children: [
-                          CircularImageWidget(),
-                          Spacer(),
-                          CircularImageWidget(),
-                          Spacer(),
-                          CircularImageWidget(),
-                          Spacer(),
-                          GreenArrowWidget()
-                        ],
-                      ),
-                    ],
+            const SizedBox(
+              height: 16,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_300),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(theme.spaces.space_100),
+                child: Container(
+                  color: Colors.white,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: theme.spaces.space_200,
+                        vertical: theme.spaces.space_200),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          constants.availableServicetxt,
+                          style: theme.typography.h700,
+                        ),
+                        SizedBox(height: theme.spaces.space_100),
+                        const Row(
+                          children: [
+                            CircularImageWidget(),
+                            Spacer(),
+                            CircularImageWidget(),
+                            Spacer(),
+                            CircularImageWidget(),
+                            Spacer(),
+                            CircularImageWidget(),
+                          ],
+                        ),
+                        SizedBox(
+                          height: theme.spaces.space_200,
+                        ),
+                        const Row(
+                          children: [
+                            CircularImageWidget(),
+                            Spacer(),
+                            CircularImageWidget(),
+                            Spacer(),
+                            CircularImageWidget(),
+                            Spacer(),
+                            GreenArrowWidget()
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          )
-        ],
+            TextWithArrowWidget(
+                leftText: constants.cleanServicestxt,
+                rightText: constants.seeAlltxt,
+                icon: Icons.arrow_forward_ios_outlined),
+            const HorizontalScrollWidget()
+          ],
+        ),
       ),
     );
   }
