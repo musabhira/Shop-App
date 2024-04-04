@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shopapp/features/Authentication/presentation/page/login_phone_number_page.dart';
 import 'package:shopapp/features/Authentication/presentation/providers/auth_provider.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -69,7 +71,9 @@ class LoginPage extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.push(LoginPageWithPhone.routePath);
+                },
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
