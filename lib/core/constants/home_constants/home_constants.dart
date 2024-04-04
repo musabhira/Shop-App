@@ -10,11 +10,7 @@ class HomeConstants {
   final seeAlltxt = 'See All';
   final cleanServicestxt = 'Cleaning Service';
   final homeCleaningtxt = 'Home Cleaning';
-  final forgotpassword = 'Forgot your password?';
-  final alternativetxt = 'or continue with';
-  final alreadyuser = 'Already have an account?';
-  final loginnow = 'Login';
-  final movielogo = 'assets/images/movie_logo3.png';
+  final myAccounttxt = 'My Account';
 }
 
 @riverpod

@@ -7,11 +7,12 @@ import 'package:shopapp/features/Authentication/presentation/page/login_phone_nu
 import 'package:shopapp/features/Authentication/presentation/page/otp_verfication_page.dart';
 import 'package:shopapp/features/home/presentation/page/clean_service_page.dart';
 import 'package:shopapp/features/home/presentation/page/home_page.dart';
+import 'package:shopapp/features/home/presentation/page/profile_page.dart';
 
 part 'router.g.dart';
 
 final _router = GoRouter(
-  initialLocation: LoginPage.routePath,
+  initialLocation: BottomNaviWidget.routePath,
   routes: [
     GoRoute(
       path: BottomNaviWidget.routePath,
@@ -27,6 +28,10 @@ final _router = GoRouter(
     GoRoute(
       path: HomePage.routePath,
       builder: (context, state) => const HomePage(),
+    ),
+    GoRoute(
+      path: ProfilePage.routePath,
+      builder: (context, state) => const ProfilePage(),
     ),
     GoRoute(
       path: OtpVerificationPage.routePath,

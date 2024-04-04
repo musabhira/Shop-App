@@ -28,11 +28,6 @@ class AuthFirebaseDataSourceimpl implements AuthFirebaseDataSource {
     }
   }
 
-  Future<void> signout() async {
-    await _auth.signOut();
-    await GoogleSignIn().signOut();
-  }
-
   @override
   Future<void> signOut() async {
     await _auth.signOut();

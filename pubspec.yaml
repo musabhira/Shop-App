@@ -46,6 +46,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   hooks_riverpod: ^2.5.1
   flutter_svg: ^2.0.10+1
+  intl_phone_field: ^3.2.0
 
 dev_dependencies:
   flutter_test:

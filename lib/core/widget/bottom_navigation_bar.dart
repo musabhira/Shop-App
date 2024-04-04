@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
 import 'package:shopapp/features/home/presentation/page/home_page.dart';
+import 'package:shopapp/features/home/presentation/page/profile_page.dart';
 
 class BottomNaviWidget extends HookConsumerWidget {
   static const routePath = '/bottomNav';
@@ -23,8 +24,8 @@ class BottomNaviWidget extends HookConsumerWidget {
         ]);
     final navbartext = useMemoized(() => [
           'Home',
-          'Bookings',
-          'Account',
+          'Book',
+          'Acct',
         ]);
 
     // Function to handle page changes in a PageView
@@ -45,7 +46,7 @@ class BottomNaviWidget extends HookConsumerWidget {
         children: const [
           HomePage(),
           HomePage(),
-          Scaffold(),
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: Card(
@@ -111,17 +112,3 @@ class BottomNaviWidget extends HookConsumerWidget {
 }
 
 final navbarSelectedPageProvider = StateProvider((ref) => 0);
-
-
-   // child: Center(
-                      //   child: SvgPicture.asset(
-                      //     navbarIcons[i],
-                      //     height: space.space_300,
-                      //     width: space.space_300,
-                      //     colorFilter: selectedIndex == i
-                      //         ? ColorFilter.mode(
-                      //             theme.colors.primary, BlendMode.srcATop)
-                      //         : ColorFilter.mode(
-                      //             theme.colors.primary, BlendMode.srcATop),
-                      //   ),
-                      // ),

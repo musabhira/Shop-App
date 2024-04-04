@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopapp/core/themes/app_theme.dart';
 
 class TextfieldWidget extends ConsumerWidget {
-  final String labeltext;
+  final String hintText;
   final Icon icondata;
   final TextEditingController controller;
   final TextInputType keyboardtype;
   const TextfieldWidget(
       {super.key,
-      required this.labeltext,
+      required this.hintText,
       required this.icondata,
       required this.controller,
       required this.keyboardtype});
@@ -17,24 +16,21 @@ class TextfieldWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-      width: MediaQuery.sizeOf(context).width / 1.1,
       child: TextField(
         keyboardType: keyboardtype,
         autofocus: false,
         controller: controller,
-        cursorColor: AppTheme.of(context).colors.primary,
+        cursorColor: Colors.black,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-                vertical: AppTheme.of(context).spaces.space_300,
-                horizontal: AppTheme.of(context).spaces.space_400),
-            hintText: labeltext,
+            contentPadding: const EdgeInsets.symmetric(vertical: 24),
+            hintText: hintText,
             prefixIcon: icondata,
-            labelStyle: TextStyle(color: AppTheme.of(context).colors.primary),
-            fillColor: AppTheme.of(context).colors.textInverse,
+            iconColor: Colors.black,
+            hintStyle: const TextStyle(color: Colors.black),
+            fillColor: Colors.grey,
             filled: true,
             border: OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: AppTheme.of(context).colors.primary),
+                borderSide: const BorderSide(color: Colors.black),
                 borderRadius: BorderRadius.circular(10))),
       ),
     );

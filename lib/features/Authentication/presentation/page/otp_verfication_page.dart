@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
 import 'package:shopapp/features/Authentication/presentation/page/login_button_widget.dart';
 import 'package:shopapp/features/Authentication/presentation/providers/auth_provider.dart';
 import 'package:shopapp/features/Authentication/presentation/widgets/phone_number_container_widget.dart';
 import 'package:shopapp/features/Authentication/presentation/widgets/text_field_widget.dart';
 
-class OtpVerificationPage extends ConsumerWidget {
+class OtpVerificationPage extends HookConsumerWidget {
   const OtpVerificationPage({super.key});
   static const routePath = '/loginwithotp';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final maindata = ref.read(authProvider.notifier);
     final theme = AppTheme.of(context);
+    final data = ref.read(authProvider.notifier);
+    final otpController = useTextEditingController();
     // final data = ref.watch(loginConstantsProvider);
 
     return Scaffold(
@@ -30,20 +33,18 @@ class OtpVerificationPage extends ConsumerWidget {
                 height: theme.spaces.space_300,
               ),
               TextfieldWidget(
-                  keyboardtype: TextInputType.number,
-                  labeltext: 'otppp',
-                  icondata: const Icon(Icons.lock_clock_rounded),
-                  controller: maindata.otpcontroller),
+                keyboardtype: TextInputType.number,
+                hintText: 'Enter Otp',
+                icondata: const Icon(Icons.lock_clock_rounded),
+                controller: otpController,
+              ),
               SizedBox(
                 height: theme.spaces.space_300,
               ),
               LoginButtonWidget(
-                btntxt: 'otp conform',
+                btntxt: 'Confirm Otp',
                 onPressed: () {
-                  maindata.verifyOtp(
-                    context,
-                    maindata.otpcontroller.text,
-                  );
+                  data.verifyOtp(context, otpController.text);
                 },
               ),
               SizedBox(

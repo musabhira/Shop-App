@@ -14,31 +14,22 @@ import 'package:shopapp/features/Authentication/domain/usecases/signout_usecase.
 import 'package:shopapp/features/Authentication/presentation/page/login_page.dart';
 import 'package:shopapp/features/Authentication/presentation/page/otp_verfication_page.dart';
 import 'package:shopapp/features/Authentication/presentation/providers/auth_state.dart';
-import 'package:shopapp/features/home/presentation/page/home_page.dart';
 
 part 'auth_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class Auth extends _$Auth {
-  final TextEditingController emailcontroller = TextEditingController();
-  final TextEditingController passwordcontroller = TextEditingController();
-  final TextEditingController namecontroller = TextEditingController();
-  final TextEditingController numbercontroller = TextEditingController();
-  final TextEditingController confirmcontroller = TextEditingController();
-  final TextEditingController phonenumberlogincontroller =
-      TextEditingController();
-  final TextEditingController otpcontroller = TextEditingController();
   late final AuthenticationRepository repository;
 
   @override
   AuthState build() {
-    repository = ref.read(authenticationRepositoryProvider);
     return AuthState(verificationId: '', resendToken: null);
   }
 
   Future<void> signinWithGoogle(BuildContext context) async {
     try {
-      await GoogleSignInUsecase(repository: repository)();
+      await GoogleSignInUsecase(
+          repository: ref.read(authenticationRepositoryProvider))();
       Future.sync(() => context.go(BottomNaviWidget.routePath));
     } on BaseException catch (e) {
       Future.sync(() => SnackbarUtils.showMessage(context, e.message));
@@ -47,8 +38,8 @@ class Auth extends _$Auth {
 
   Future<void> signInWithPhone(BuildContext context, String phone) async {
     try {
-      final verificationData =
-          await LoginwithPhoneNumberUsecase(repository: repository)(phone);
+      final verificationData = await LoginwithPhoneNumberUsecase(
+          repository: ref.read(authenticationRepositoryProvider))(phone);
       state = AuthState(
           verificationId: verificationData.$1,
           resendToken: verificationData.$2);
@@ -60,8 +51,10 @@ class Auth extends _$Auth {
 
   Future<void> verifyOtp(BuildContext context, String otp) async {
     try {
-      await VerifyOtpUsecase(repository: repository)(state.verificationId, otp);
-      Future.sync(() => context.go(HomePage.routePath));
+      await VerifyOtpUsecase(
+              repository: ref.read(authenticationRepositoryProvider))(
+          state.verificationId, otp);
+      Future.sync(() => context.go(BottomNaviWidget.routePath));
     } on BaseException catch (e) {
       Future.sync(() => SnackbarUtils.showMessage(context, e.message));
     }
@@ -69,7 +62,8 @@ class Auth extends _$Auth {
 
   Future<void> signOut(BuildContext context) async {
     try {
-      await SignOutUseCase(repository: repository)();
+      await SignOutUseCase(
+          repository: ref.read(authenticationRepositoryProvider))();
       Future.sync(() => context.go(LoginPage.routePath));
     } on SignOutException catch (e) {
       Future.sync(() => SnackbarUtils.showMessage(context, e.message));
