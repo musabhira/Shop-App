@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopapp/core/constants/home_constants/profile_constants.dart';
+import 'package:shopapp/features/Authentication/presentation/providers/auth_provider.dart';
 import 'package:shopapp/features/home/presentation/widgets/setting_widget.dart';
 
 import '../../../../core/themes/app_theme.dart';
@@ -109,7 +110,13 @@ class ProfilePage extends ConsumerWidget {
           SettingWidget(
               txt: constants.referAFriendtxt, icon: Icons.people_alt_outlined),
           SettingWidget(txt: constants.customerSupporttxt, icon: Icons.call),
-          SettingWidget(txt: constants.logOuttxt, icon: Icons.logout),
+          SettingWidget(
+            onTap: () {
+              ref.read(authProvider.notifier).signOut(context);
+            },
+            txt: constants.logOuttxt,
+            icon: Icons.logout,
+          ),
         ],
       ),
     );

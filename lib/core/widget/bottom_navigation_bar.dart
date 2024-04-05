@@ -111,4 +111,4 @@ class BottomNaviWidget extends HookConsumerWidget {
   }
 }
 
-final navbarSelectedPageProvider = StateProvider((ref) => 0);
+final navbarSelectedPageProvider = StateProvider.autoDispose((ref) => 0);

@@ -13,7 +13,7 @@ import 'package:shopapp/features/home/presentation/page/profile_page.dart';
 part 'router.g.dart';
 
 final _router = GoRouter(
-  initialLocation: LoginPage.routePath,
+  initialLocation: BottomNaviWidget.routePath,
   routes: [
     GoRoute(
       path: BottomNaviWidget.routePath,
