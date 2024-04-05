@@ -1,51 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:shopapp/core/themes/app_theme.dart';
+import 'package:shopapp/features/home/domain/entites/service_entity.dart';
 
 class LoadingCategoryWidget extends StatelessWidget {
-  const LoadingCategoryWidget({super.key});
+  final List<ServiceEntity> entity;
+  const LoadingCategoryWidget({super.key, required this.entity});
 
   @override
   Widget build(BuildContext context) {
-    final theme = AppTheme.of(context);
     return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_75),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(
-                width: theme.spaces.space_500,
-                height: theme.spaces.space_600,
-                child: Shimmer.fromColors(
-                  baseColor: theme.colors.textInverse,
-                  highlightColor: theme.colors.textSubtle,
-                  child: const CircleAvatar(),
-                ),
-              ),
-              SizedBox(
-                height: theme.spaces.space_75,
-              ),
-              Container(
-                margin:
-                    EdgeInsets.symmetric(horizontal: theme.spaces.space_150),
-                width: theme.spaces.space_700,
-                height: theme.spaces.space_150,
-                child: Shimmer.fromColors(
-                  baseColor: theme.colors.textInverse,
-                  highlightColor: theme.colors.textSubtle,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: theme.colors.primary,
-                        borderRadius:
-                            BorderRadius.circular(theme.spaces.space_50)),
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+          child: Shimmer.fromColors(
+            baseColor: Colors.grey[300]!,
+            highlightColor: Colors.grey[100]!,
+            child: Stack(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height / 6.50,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

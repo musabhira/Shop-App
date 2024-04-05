@@ -9,7 +9,9 @@ class ServiceModel with _$ServiceModel {
   const ServiceModel._();
 
   const factory ServiceModel({
+    required String id,
     required String service,
+    required num price,
   }) = _ServiceModel;
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) =>
@@ -21,6 +23,7 @@ class ServiceModel with _$ServiceModel {
   ) {
     final data = snapshot.data()!;
     data['id'] = snapshot.id;
+
     return ServiceModel.fromJson(data);
   }
   Map<String, dynamic> toFirestore() {

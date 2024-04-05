@@ -21,11 +21,11 @@ final getServiceProvider =
 );
 
 typedef GetServiceRef = AutoDisposeStreamProviderRef<List<ServiceEntity>>;
-String _$serviceHash() => r'43c4fa4c18d4d67c8dd3d8587e77a42c513f7e1e';
+String _$serviceHash() => r'd8a852c83c9eabe5e924ea5ed1497cb1ebf36d30';
 
 /// See also [Service].
 @ProviderFor(Service)
-final serviceProvider = NotifierProvider<Service, ServiceState>.internal(
+final serviceProvider = AutoDisposeNotifierProvider<Service, void>.internal(
   Service.new,
   name: r'serviceProvider',
   debugGetCreateSourceHash:
@@ -34,6 +34,6 @@ final serviceProvider = NotifierProvider<Service, ServiceState>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$Service = Notifier<ServiceState>;
+typedef _$Service = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

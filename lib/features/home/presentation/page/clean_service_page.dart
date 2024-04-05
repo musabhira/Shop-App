@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopapp/core/constants/home_constants/service_constants.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
-import 'package:shopapp/features/home/presentation/page/cart_page.dart';
+import 'package:shopapp/features/cart/presentation/page/cart_page.dart';
 import 'package:shopapp/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/car_clean_tab_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/deep_clean_tab_bar.dart';

@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopapp/features/home/data/data%20source/service_firestore_datasource.dart';
 import 'package:shopapp/features/home/data/data%20source/service_firestore_datasource_impl.dart';
-import 'package:shopapp/features/home/data/models/service_model.dart';
+import 'package:shopapp/features/home/domain/entites/cart_entity.dart';
 import 'package:shopapp/features/home/domain/entites/service_entity.dart';
 import 'package:shopapp/features/home/domain/repository/service_repository.dart';
 
@@ -18,14 +18,21 @@ class ServiceRepositoryImpl implements ServiceRepository {
     await for (final snapshot in services) {
       final docs = snapshot;
       yield [
-        for (final service in docs) ServiceEntity(service: service.service)
+        for (final service in docs)
+          ServiceEntity(
+            service: service.service,
+            id: service.id,
+            price: service.price,
+            count: 0,
+          ),
       ];
     }
   }
 
   @override
-  Future<void> sendService(ServiceEntity service) async {
-    await dataSource.sendService(ServiceModel(service: service.service));
+  Future<void> sendService(CartEntity service) async {
+    // await dataSource.sendService(CartModel(
+    //     service: service.service, id: service.id, count: service.count));
   }
 }
 
