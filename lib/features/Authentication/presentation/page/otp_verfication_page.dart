@@ -44,7 +44,7 @@ class OtpVerificationPage extends HookConsumerWidget {
               LoginButtonWidget(
                 btntxt: 'Confirm Otp',
                 onPressed: () {
-                  data.verifyOtp(context, otpController.text);
+                  data.verifyOtp(context, otpController.text, ref);
                 },
               ),
               SizedBox(

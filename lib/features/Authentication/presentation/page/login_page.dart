@@ -39,7 +39,7 @@ class LoginPage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
               child: InkWell(
                 onTap: () {
-                  googleauth.signinWithGoogle(context);
+                  googleauth.signinWithGoogle(context, ref);
                 },
                 child: Container(
                   height: 50,

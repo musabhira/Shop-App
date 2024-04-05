@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopapp/core/auth/signin_exception.dart';
 import 'package:shopapp/core/auth/signup_exception.dart';
 import 'package:shopapp/features/Authentication/data/data%20source/auth_firebase_dataSource.dart';
+import 'package:shopapp/features/Authentication/data/data%20source/user_firestore_datasource_impl.dart';
 
 part 'auth_firebase_datasource_impl.g.dart';
 
@@ -13,7 +15,7 @@ class AuthFirebaseDataSourceimpl implements AuthFirebaseDataSource {
   AuthFirebaseDataSourceimpl(this._auth);
 
   @override
-  Future<void> googleSignIn() async {
+  Future<void> googleSignIn(WidgetRef ref) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       final GoogleSignInAuthentication? googleAuth =
@@ -22,7 +24,13 @@ class AuthFirebaseDataSourceimpl implements AuthFirebaseDataSource {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      final userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      if (userCredential.user != null) {
+        ref
+            .watch(userFireStoreProvider)
+            .createUserDocument(userCredential.user!);
+      }
     } on Exception {
       throw SignUpException('Cannot login', 'try again');
     }
@@ -67,10 +75,14 @@ class AuthFirebaseDataSourceimpl implements AuthFirebaseDataSource {
   }
 
   @override
-  Future<void> verifyOtp(String verificationId, String otp) async {
+  Future<void> verifyOtp(
+      String verificationId, String otp, WidgetRef ref) async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: otp);
-    await _auth.signInWithCredential(credential);
+    final userCredential = await _auth.signInWithCredential(credential);
+    if (userCredential.user != null) {
+      ref.watch(userFireStoreProvider).createUserDocument(userCredential.user!);
+    }
   }
 }
 

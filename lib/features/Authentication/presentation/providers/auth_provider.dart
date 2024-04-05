@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopapp/core/auth/base_exception.dart';
@@ -26,10 +27,10 @@ class Auth extends _$Auth {
     return AuthState(verificationId: '', resendToken: null);
   }
 
-  Future<void> signinWithGoogle(BuildContext context) async {
+  Future<void> signinWithGoogle(BuildContext context, WidgetRef ref) async {
     try {
       await GoogleSignInUsecase(
-          repository: ref.read(authenticationRepositoryProvider))();
+          repository: ref.read(authenticationRepositoryProvider))(ref);
       Future.sync(() => context.go(BottomNaviWidget.routePath));
     } on BaseException catch (e) {
       Future.sync(() => SnackbarUtils.showMessage(context, e.message));
@@ -49,11 +50,12 @@ class Auth extends _$Auth {
     }
   }
 
-  Future<void> verifyOtp(BuildContext context, String otp) async {
+  Future<void> verifyOtp(
+      BuildContext context, String otp, WidgetRef ref) async {
     try {
       await VerifyOtpUsecase(
               repository: ref.read(authenticationRepositoryProvider))(
-          state.verificationId, otp);
+          state.verificationId, otp, ref);
       Future.sync(() => context.go(BottomNaviWidget.routePath));
     } on BaseException catch (e) {
       Future.sync(() => SnackbarUtils.showMessage(context, e.message));

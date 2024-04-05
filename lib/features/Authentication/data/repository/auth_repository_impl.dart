@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shopapp/features/Authentication/data/data%20source/auth_firebase_dataSource.dart';
 import 'package:shopapp/features/Authentication/data/data%20source/auth_firebase_datasource_impl.dart';
@@ -15,8 +16,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<void> googleSignIn() async {
-    await dataSource.googleSignIn();
+  Future<void> googleSignIn(WidgetRef ref) async {
+    await dataSource.googleSignIn(ref);
   }
 
   @override
@@ -25,8 +26,9 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<void> verifyOtp(String verificationId, String otp) async {
-    await dataSource.verifyOtp(verificationId, otp);
+  Future<void> verifyOtp(
+      String verificationId, String otp, WidgetRef ref) async {
+    await dataSource.verifyOtp(verificationId, otp, ref);
   }
 }
 
