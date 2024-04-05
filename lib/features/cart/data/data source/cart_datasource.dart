@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shopapp/features/cart/data/models/cart_model.dart';
 
 abstract class CartDataSource {
   Future<void> addToCart(CartModel cartItem);
-  Future getCartList();
-  Future<void> addItemCount(int count);
+  Stream<QuerySnapshot<CartModel>> getCartList();
+  Future<void> addItemCount(int count, String itemId);
   Future<void> deleteFromCart(String id);
+  Future<void> deleteCartItem(String serviceId);
 }

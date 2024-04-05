@@ -31,10 +31,8 @@ class ServiceFireStoreDataSourceImpl implements ServiceFireStoreDataSource {
   Future<void> sendServiceToCart(ServiceModel message) async {
     // final docId = cartCollection.add(message);
     final cartItem = CartModel(
-      id: message.id,
       count: 0,
       service: message.service,
-      price: 00,
     );
     final ddd = cartCollection.doc(message.id).set(cartItem);
     await ddd;

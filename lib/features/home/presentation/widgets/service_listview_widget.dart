@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shopapp/features/cart/data/models/cart_model.dart';
+import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
 import 'package:shopapp/features/home/domain/entites/service_entity.dart';
 
 import '../../../../core/themes/app_theme.dart';
 
 class ServiceListviewWidget extends HookConsumerWidget {
-  final List<ServiceEntity> entity;
-  const ServiceListviewWidget({super.key, required this.entity});
+  final List<ServiceEntity> services;
+  final List<CartModel> cartItems;
+
+  const ServiceListviewWidget({
+    super.key,
+    required this.services,
+    required this.cartItems,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = AppTheme.of(context);
 
     return ListView.builder(
-      itemCount: entity.length,
+      itemCount: services.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
+        final cartCount = cartItems
+                .where((cartItem) => cartItem.service == services[index].id)
+                .firstOrNull
+                ?.count ??
+            0;
+
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
           child: Stack(
@@ -69,7 +83,7 @@ class ServiceListviewWidget extends HookConsumerWidget {
                             ],
                           ),
                           Text(
-                            entity[index].service,
+                            services[index].service,
                             style: const TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w500),
                           ),
@@ -78,7 +92,7 @@ class ServiceListviewWidget extends HookConsumerWidget {
                             style: TextStyle(color: Colors.grey),
                           ),
                           Text(
-                            "₹ ${entity[index].price.toDouble()}",
+                            "₹ ${services[index].price.toDouble()}",
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w800),
                           )
@@ -94,31 +108,91 @@ class ServiceListviewWidget extends HookConsumerWidget {
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      ref
+                          .read(cartProvider.notifier)
+                          .addServiceToCart(services[index].id);
+                    },
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       bottomRight: Radius.circular(15),
                     ),
                     child: Ink(
-                      height: MediaQuery.of(context).size.height / 23,
-                      width: MediaQuery.of(context).size.width / 5,
-                      decoration: BoxDecoration(
+                        height: MediaQuery.of(context).size.height / 23,
+                        width: MediaQuery.of(context).size.width / 3.5,
+                        decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15),
                           ),
-                          gradient: theme.colors.secondary),
-                      child: const Center(
-                        child: Text(
-                          "Add +",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
-                          ),
+                          gradient:
+                              cartCount < 1 ? theme.colors.secondary : null,
+                          color: cartCount >= 1
+                              ? const Color.fromARGB(255, 219, 221, 223)
+                              : null,
                         ),
-                      ),
-                    ),
+                        child: cartCount < 1
+                            ? Center(
+                                child: Text(
+                                    cartCount < 1
+                                        ? "Add +"
+                                        : cartCount.toString(),
+                                    style: cartCount < 1
+                                        ? TextStyle(
+                                            color: theme.colors.textInverse,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                          )
+                                        : TextStyle(
+                                            color: theme.colors.primary,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                          )),
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.remove,
+                                      size: theme.spaces.space_200,
+                                    ),
+                                    onPressed: () {
+                                      ref
+                                          .read(cartProvider.notifier)
+                                          .deleteCartItem(services[index].id);
+                                    },
+                                  ),
+                                  Text(
+                                    cartCount < 1
+                                        ? "Add +"
+                                        : cartCount.toString(),
+                                    style: cartCount < 1
+                                        ? TextStyle(
+                                            color: theme.colors.textInverse,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                          )
+                                        : TextStyle(
+                                            color: theme.colors.primary,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 15,
+                                          ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.add,
+                                      size: theme.spaces.space_200,
+                                    ),
+                                    onPressed: () {
+                                      ref
+                                          .read(cartProvider.notifier)
+                                          .addServiceToCart(services[index].id);
+                                    },
+                                  ),
+                                ],
+                              )),
                   ),
                 ),
               )

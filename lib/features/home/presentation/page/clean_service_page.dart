@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shopapp/core/constants/home_constants/service_constants.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
-import 'package:shopapp/features/cart/presentation/page/cart_page.dart';
+import 'package:shopapp/features/cart/data/models/cart_model.dart';
+import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
+import 'package:shopapp/features/home/presentation/providers/service_provider.dart';
 import 'package:shopapp/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/car_clean_tab_widget.dart';
+import 'package:shopapp/features/home/presentation/widgets/cart_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/deep_clean_tab_bar.dart';
 import 'package:shopapp/features/home/presentation/widgets/maid_services_tab_bar_widget.dart';
 
@@ -15,6 +17,39 @@ class CleanServicePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final Widget error = Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Cannot fetch services'),
+          // Text(''),
+          IconButton(
+            onPressed: () {
+              ref.invalidate(getServiceProvider);
+            },
+            icon: const Icon(Icons.refresh),
+          )
+        ],
+      ),
+    );
+
+    const Widget loading = Center(child: CircularProgressIndicator());
+
+    Widget? contentToShow;
+    ref.watch(getServiceProvider).when(
+          data: (services) {
+            ref.watch(getCartProvider).when(
+                  data: (cart) => contentToShow = CartWidget(
+                    cartItems: cart,
+                  ),
+                  error: (e, s) => contentToShow = error,
+                  loading: () => contentToShow = loading,
+                );
+          },
+          error: (e, s) => contentToShow = error,
+          loading: () => contentToShow = loading,
+        );
+
     final constants = ref.watch(serviceConstantsProvider);
     final theme = AppTheme.of(context);
     return DefaultTabController(
@@ -65,61 +100,15 @@ class CleanServicePage extends ConsumerWidget {
             ],
           ),
           bottomNavigationBar: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: Card(
-                elevation: 10,
-                child: Container(
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: theme.colors.textInverse,
-                          child: Center(child: Text('2 items | 3355')),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          color: theme.colors.textSubtlest,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: InkWell(
-                              onTap: () {
-                                context.push(CartPage.routePath);
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Icon(Icons.arrow_right,
-                                      color: Colors.transparent),
-                                  Text(
-                                    constants.viewCarttxt,
-                                    style: theme.typography.h600.copyWith(
-                                        color: theme.colors.textInverse),
-                                  ),
-                                  Icon(Icons.arrow_right,
-                                      color: theme.colors.textInverse),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
+              padding: const EdgeInsets.all(16.0), child: contentToShow),
         ));
   }
 }
+
+final cartItemsProvider = Provider<List<CartModel>>((ref) {
+  return [];
+});
+
+final cartItemsLengthProvider = Provider<int>((ref) {
+  return ref.watch(cartItemsProvider).length;
+});

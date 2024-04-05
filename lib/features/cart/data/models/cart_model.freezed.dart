@@ -20,10 +20,8 @@ CartModel _$CartModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CartModel {
-  String get id => throw _privateConstructorUsedError;
   String get service => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +34,7 @@ abstract class $CartModelCopyWith<$Res> {
   factory $CartModelCopyWith(CartModel value, $Res Function(CartModel) then) =
       _$CartModelCopyWithImpl<$Res, CartModel>;
   @useResult
-  $Res call({String id, String service, int count, double price});
+  $Res call({String service, int count});
 }
 
 /// @nodoc
@@ -52,16 +50,10 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? service = null,
     Object? count = null,
-    Object? price = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       service: null == service
           ? _value.service
           : service // ignore: cast_nullable_to_non_nullable
@@ -70,10 +62,6 @@ class _$CartModelCopyWithImpl<$Res, $Val extends CartModel>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 }
@@ -86,7 +74,7 @@ abstract class _$$CartModelImplCopyWith<$Res>
       __$$CartModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String service, int count, double price});
+  $Res call({String service, int count});
 }
 
 /// @nodoc
@@ -100,16 +88,10 @@ class __$$CartModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? service = null,
     Object? count = null,
-    Object? price = null,
   }) {
     return _then(_$CartModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       service: null == service
           ? _value.service
           : service // ignore: cast_nullable_to_non_nullable
@@ -118,10 +100,6 @@ class __$$CartModelImplCopyWithImpl<$Res>
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -129,28 +107,20 @@ class __$$CartModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CartModelImpl extends _CartModel {
-  const _$CartModelImpl(
-      {required this.id,
-      required this.service,
-      required this.count,
-      required this.price})
+  const _$CartModelImpl({required this.service, required this.count})
       : super._();
 
   factory _$CartModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CartModelImplFromJson(json);
 
   @override
-  final String id;
-  @override
   final String service;
   @override
   final int count;
-  @override
-  final double price;
 
   @override
   String toString() {
-    return 'CartModel(id: $id, service: $service, count: $count, price: $price)';
+    return 'CartModel(service: $service, count: $count)';
   }
 
   @override
@@ -158,15 +128,13 @@ class _$CartModelImpl extends _CartModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.service, service) || other.service == service) &&
-            (identical(other.count, count) || other.count == count) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, service, count, price);
+  int get hashCode => Object.hash(runtimeType, service, count);
 
   @JsonKey(ignore: true)
   @override
@@ -184,23 +152,17 @@ class _$CartModelImpl extends _CartModel {
 
 abstract class _CartModel extends CartModel {
   const factory _CartModel(
-      {required final String id,
-      required final String service,
-      required final int count,
-      required final double price}) = _$CartModelImpl;
+      {required final String service,
+      required final int count}) = _$CartModelImpl;
   const _CartModel._() : super._();
 
   factory _CartModel.fromJson(Map<String, dynamic> json) =
       _$CartModelImpl.fromJson;
 
   @override
-  String get id;
-  @override
   String get service;
   @override
   int get count;
-  @override
-  double get price;
   @override
   @JsonKey(ignore: true)
   _$$CartModelImplCopyWith<_$CartModelImpl> get copyWith =>

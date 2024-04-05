@@ -10,7 +10,7 @@ class AppBarWidget extends StatelessWidget {
     return Container(
       height: MediaQuery.sizeOf(context).height / 8,
       width: MediaQuery.sizeOf(context).width,
-      color: Colors.white,
+      color: theme.colors.textSubtle,
       child: Padding(
         padding: const EdgeInsets.only(top: 30, left: 22),
         child: Row(
@@ -20,7 +20,7 @@ class AppBarWidget extends StatelessWidget {
               width: MediaQuery.sizeOf(context).width / 12,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: theme.colors.textSubtle,
+                color: theme.colors.textDisabled,
               ),
               child: const Icon(Icons.keyboard_arrow_left_outlined),
             ),

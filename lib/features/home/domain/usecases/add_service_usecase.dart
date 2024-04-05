@@ -1,6 +1,5 @@
 import 'package:shopapp/core/auth/base_exception.dart';
 import 'package:shopapp/features/home/domain/entites/cart_entity.dart';
-import 'package:shopapp/features/home/domain/entites/service_entity.dart';
 import 'package:shopapp/features/home/domain/repository/service_repository.dart';
 
 class AddServiceUseCase {

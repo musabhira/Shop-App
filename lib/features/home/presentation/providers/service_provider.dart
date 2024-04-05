@@ -8,9 +8,6 @@ part 'service_provider.g.dart';
 @riverpod
 class Service extends _$Service {
   @override
-  // ServiceState build() {
-  //   return ServiceState(service: '');
-  // }
   void build() {}
 }
 

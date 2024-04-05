@@ -9,10 +9,8 @@ class CartModel with _$CartModel {
   const CartModel._();
 
   const factory CartModel({
-    required String id,
     required String service,
     required int count,
-    required double price,
   }) = _CartModel;
 
   factory CartModel.fromJson(Map<String, dynamic> json) =>
@@ -23,10 +21,9 @@ class CartModel with _$CartModel {
     SnapshotOptions? options,
   ) {
     final data = snapshot.data()!;
-    data['id'] = snapshot.id;
     return CartModel.fromJson(data);
   }
   Map<String, dynamic> toFirestore() {
-    return toJson()..remove('id');
+    return toJson();
   }
 }
