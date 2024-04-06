@@ -35,13 +35,13 @@ class ProfilePage extends ConsumerWidget {
                     borderRadius: BorderRadius.all(
                         Radius.circular(theme.spaces.space_100)),
                     child: SizedBox(
-                      height: 55,
+                      height: theme.spaces.space_100 * 6.875,
                       child: Image.network(
                           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQESgEgkgFa6JBZxS_lIO7glUy3SWRmbfO4K7sTq6_1NA&s'),
                     ),
                   ),
-                  const SizedBox(
-                    width: 24,
+                  SizedBox(
+                    width: theme.spaces.space_300,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +66,7 @@ class ProfilePage extends ConsumerWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(theme.spaces.space_100),
                 child: Container(
-                  height: 50,
+                  height: theme.spaces.space_100 * 6.25,
                   color: theme.colors.bottomNavBorder.withOpacity(0.3),
                   child: Row(
                     children: [
@@ -118,8 +118,8 @@ class ProfilePage extends ConsumerWidget {
               txt: constants.logOuttxt,
               icon: Icons.logout,
             ),
-            const SizedBox(
-              height: 200,
+            SizedBox(
+              height: theme.spaces.space_100 * 25,
             )
           ],
         ),

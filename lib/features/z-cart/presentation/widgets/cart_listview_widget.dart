@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
-import 'package:shopapp/features/cart/data/models/cart_model.dart';
-import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
+import 'package:shopapp/features/z-cart/data/models/cart_model.dart';
+import 'package:shopapp/features/z-cart/presentation/providers/cart_provider.dart';
 import 'package:shopapp/features/home/domain/entites/service_entity.dart';
 
 class CartListviewWidget extends ConsumerWidget {
@@ -54,14 +54,14 @@ class CartListviewWidget extends ConsumerWidget {
                               .deleteCartItem(services[index].id);
                         },
                         child: Container(
-                          height: 26,
-                          width: 26,
+                          height: theme.spaces.space_100 * 3.25,
+                          width: theme.spaces.space_100 * 3.25,
                           color: theme.colors.text,
                           child: Center(
                             child: Icon(
                               Icons.remove,
                               color: theme.colors.textInverse,
-                              size: 16,
+                              size: theme.spaces.space_200,
                             ),
                           ),
                         ),
@@ -76,7 +76,7 @@ class CartListviewWidget extends ConsumerWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      const SizedBox(width: 16),
+                      SizedBox(width: theme.spaces.space_200),
                       InkWell(
                         onTap: () {
                           ref
@@ -84,8 +84,8 @@ class CartListviewWidget extends ConsumerWidget {
                               .addServiceToCart(services[index].id);
                         },
                         child: Container(
-                          height: 26,
-                          width: 26,
+                          height: theme.spaces.space_100 * 3.25,
+                          width: theme.spaces.space_100 * 3.25,
                           color: theme.colors.text,
                           child: Icon(
                             Icons.add,
@@ -97,7 +97,7 @@ class CartListviewWidget extends ConsumerWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 16),
+                SizedBox(width: theme.spaces.space_200),
                 Text(
                   '₹ 124',
                   style: theme.typography.h600,

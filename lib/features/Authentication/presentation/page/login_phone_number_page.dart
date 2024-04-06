@@ -33,22 +33,26 @@ class LoginPageWithPhone extends HookConsumerWidget {
               SizedBox(
                 height: theme.spaces.space_300,
               ),
-              IntlPhoneField(
-                flagsButtonPadding: const EdgeInsets.all(8),
-                dropdownIconPosition: IconPosition.trailing,
-                showCountryFlag: false,
-                decoration: const InputDecoration(
-                  fillColor: Colors.grey,
-                  filled: true,
-                  hintText: 'Phone number',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: theme.spaces.space_250),
+                child: IntlPhoneField(
+                  flagsButtonPadding: EdgeInsets.all(theme.spaces.space_100),
+                  dropdownIconPosition: IconPosition.trailing,
+                  showCountryFlag: false,
+                  decoration: const InputDecoration(
+                    fillColor: Colors.transparent,
+                    filled: true,
+                    hintText: 'Phone number',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(),
+                    ),
                   ),
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    phonenumberController.text = phone.completeNumber;
+                  },
                 ),
-                initialCountryCode: 'IN',
-                onChanged: (phone) {
-                  phonenumberController.text = phone.completeNumber;
-                },
               ),
               SizedBox(
                 height: theme.spaces.space_300,

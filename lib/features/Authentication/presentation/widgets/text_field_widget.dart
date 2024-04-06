@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shopapp/core/themes/app_theme.dart';
 
 class TextfieldWidget extends ConsumerWidget {
   final String hintText;
@@ -15,22 +16,23 @@ class TextfieldWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = AppTheme.of(context);
     return SizedBox(
       child: TextField(
         keyboardType: keyboardtype,
         autofocus: false,
         controller: controller,
-        cursorColor: Colors.black,
+        cursorColor: theme.colors.text,
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(vertical: 24),
             hintText: hintText,
             prefixIcon: icondata,
-            iconColor: Colors.black,
-            hintStyle: const TextStyle(color: Colors.black),
-            fillColor: Colors.grey,
+            iconColor: theme.colors.text,
+            hintStyle: TextStyle(color: theme.colors.text),
+            fillColor: Colors.transparent,
             filled: true,
             border: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.black),
+                borderSide: BorderSide(color: theme.colors.text),
                 borderRadius: BorderRadius.circular(10))),
       ),
     );

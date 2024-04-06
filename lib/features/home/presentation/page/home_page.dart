@@ -54,8 +54,8 @@ class HomePage extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 8,
+            SizedBox(
+              height: theme.spaces.space_100,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,7 +76,7 @@ class HomePage extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
-                height: 50,
+                height: theme.spaces.space_100 * 6.25,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(theme.spaces.space_100),

@@ -23,11 +23,11 @@ class CouponCodeWidget extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 196, 196, 196),
+                      color: const Color.fromARGB(255, 196, 196, 196),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(theme.spaces.space_100))),
-                  height: 40,
-                  width: 130,
+                  height: theme.spaces.space_100 * 5,
+                  width: theme.spaces.space_100 * 16.5,
                   child: Center(
                     child: Text(
                       'Coupon Code',

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shopapp/features/cart/data/models/cart_model.dart';
+import 'package:shopapp/features/z-cart/data/models/cart_model.dart';
 
 abstract class CartRepository {
   Future<void> addToCart(CartModel cartItem);

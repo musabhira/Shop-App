@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopapp/core/constants/home_constants/service_constants.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
-import 'package:shopapp/features/cart/data/models/cart_model.dart';
-import 'package:shopapp/features/cart/presentation/page/cart_page.dart';
+import 'package:shopapp/features/z-cart/data/models/cart_model.dart';
+import 'package:shopapp/features/z-cart/presentation/page/cart_page.dart';
 
 class CartWidget extends ConsumerWidget {
   final List<CartModel> cartItems;

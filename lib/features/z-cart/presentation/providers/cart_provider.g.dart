@@ -20,7 +20,7 @@ final getCartProvider = AutoDisposeStreamProvider<List<CartModel>>.internal(
 );
 
 typedef GetCartRef = AutoDisposeStreamProviderRef<List<CartModel>>;
-String _$cartHash() => r'481c645624ca5bf205281d0080901e9f85947d0f';
+String _$cartHash() => r'9d6287bb0b9d2e2a234c0d38de86ffc2436e9b1b';
 
 /// See also [Cart].
 @ProviderFor(Cart)

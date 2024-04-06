@@ -10,6 +10,7 @@ class LoginButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = AppTheme.of(context);
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: AppTheme.of(context).colors.textSubtlest,
@@ -20,7 +21,7 @@ class LoginButtonWidget extends ConsumerWidget {
         onPressed: onPressed,
         child: Text(
           btntxt,
-          style: const TextStyle(color: Colors.white, fontSize: 14),
+          style: TextStyle(color: theme.colors.textInverse, fontSize: 14),
         ));
   }
 }

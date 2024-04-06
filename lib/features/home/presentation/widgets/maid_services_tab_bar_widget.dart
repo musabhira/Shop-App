@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
+import 'package:shopapp/features/z-cart/presentation/providers/cart_provider.dart';
 import 'package:shopapp/features/home/presentation/providers/service_provider.dart';
 import 'package:shopapp/features/home/presentation/widgets/loading_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/service_listview_widget.dart';

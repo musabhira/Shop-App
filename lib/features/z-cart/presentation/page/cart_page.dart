@@ -57,7 +57,6 @@ class CartPage extends ConsumerWidget {
 
     final theme = AppTheme.of(context);
     return Scaffold(
-      // extendBody: true,
       backgroundColor: theme.colors.textSubtle,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(theme.spaces.space_700),
@@ -92,7 +91,7 @@ class CartPage extends ConsumerWidget {
             Padding(
               padding: EdgeInsets.only(left: theme.spaces.space_150),
               child: SizedBox(
-                height: 230,
+                height: theme.spaces.space_100 * 28.75,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 6,
@@ -109,8 +108,8 @@ class CartPage extends ConsumerWidget {
                         child: Column(
                           children: [
                             SizedBox(
-                              width: 150,
-                              height: 150,
+                              width: theme.spaces.space_100 * 18.75,
+                              height: theme.spaces.space_100 * 18.75,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(
                                     theme.spaces.space_100),

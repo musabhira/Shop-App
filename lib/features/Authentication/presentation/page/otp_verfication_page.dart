@@ -17,7 +17,7 @@ class OtpVerificationPage extends HookConsumerWidget {
     final otpController = useTextEditingController();
 
     return Scaffold(
-      backgroundColor: theme.colors.textDisabled,
+      backgroundColor: theme.colors.textInverse,
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -30,11 +30,15 @@ class OtpVerificationPage extends HookConsumerWidget {
               SizedBox(
                 height: theme.spaces.space_300,
               ),
-              TextfieldWidget(
-                keyboardtype: TextInputType.number,
-                hintText: 'Enter Otp',
-                icondata: const Icon(Icons.lock_clock_rounded),
-                controller: otpController,
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: theme.spaces.space_200),
+                child: TextfieldWidget(
+                  keyboardtype: TextInputType.number,
+                  hintText: 'Enter Otp',
+                  icondata: const Icon(Icons.lock_clock_rounded),
+                  controller: otpController,
+                ),
               ),
               SizedBox(
                 height: theme.spaces.space_300,

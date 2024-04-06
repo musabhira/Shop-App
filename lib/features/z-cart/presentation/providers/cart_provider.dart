@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shopapp/features/cart/data/data%20source/cart_datasource_impl.dart';
-import 'package:shopapp/features/cart/data/models/cart_model.dart';
+import 'package:shopapp/features/z-cart/data/data%20source/cart_datasource_impl.dart';
+import 'package:shopapp/features/z-cart/data/models/cart_model.dart';
 
 part 'cart_provider.g.dart';
 
