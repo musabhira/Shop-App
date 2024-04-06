@@ -15,14 +15,19 @@ class AppBarWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 30, left: 22),
         child: Row(
           children: [
-            Container(
-              height: MediaQuery.sizeOf(context).height / 25,
-              width: MediaQuery.sizeOf(context).width / 12,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: theme.colors.textDisabled,
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: Container(
+                height: MediaQuery.sizeOf(context).height / 25,
+                width: MediaQuery.sizeOf(context).width / 12,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: theme.colors.textDisabled,
+                ),
+                child: const Icon(Icons.keyboard_arrow_left_outlined),
               ),
-              child: const Icon(Icons.keyboard_arrow_left_outlined),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15),

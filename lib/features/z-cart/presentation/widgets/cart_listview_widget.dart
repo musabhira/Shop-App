@@ -32,7 +32,7 @@ class CartListviewWidget extends ConsumerWidget {
               children: [
                 Text(
                   '${index + 1}.',
-                  style: theme.typography.h400,
+                  style: theme.typography.h200,
                 ),
                 const SizedBox(width: 10),
                 Expanded(

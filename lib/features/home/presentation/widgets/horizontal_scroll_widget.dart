@@ -14,25 +14,23 @@ class HorizontalScrollWidget extends ConsumerWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_100),
         child: Row(
           children: List.generate(
             5,
             (index) => Padding(
-              padding: EdgeInsets.symmetric(horizontal: theme.spaces.space_300),
+              padding: EdgeInsets.only(left: theme.spaces.space_200),
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 150,
                     height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(theme.spaces.space_200),
-                      color: theme.colors.primary,
-                    ),
-                    child: Image.network(
-                      'https://t4.ftcdn.net/jpg/03/06/99/87/360_F_306998742_5awR6uVsZ8dRNdHHnj0tnm4sGUDBAxQ5.jpg', // Replace with your actual URL structure
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        'https://t4.ftcdn.net/jpg/03/06/99/87/360_F_306998742_5awR6uVsZ8dRNdHHnj0tnm4sGUDBAxQ5.jpg', // Replace with your actual URL structure
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(height: theme.spaces.space_100),

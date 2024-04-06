@@ -57,7 +57,7 @@ class BottomNaviWidget extends HookConsumerWidget {
           top: space.space_100,
         ),
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: theme.colors.bottomNavBorder),
+          side: BorderSide(color: theme.colors.textSubtle),
           borderRadius: BorderRadius.circular(8),
         ),
         clipBehavior: Clip.antiAlias,

@@ -5,6 +5,7 @@ part 'cart_constant.g.dart';
 class CartConstants {
   final addMoretxt = 'Add more Service';
   final frequentlytxt = 'Frequently added service';
+  final bookSlottxt = 'Book Slot';
 }
 
 @riverpod

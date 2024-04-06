@@ -30,10 +30,7 @@ class ServiceRepositoryImpl implements ServiceRepository {
   }
 
   @override
-  Future<void> sendService(CartEntity service) async {
-    // await dataSource.sendService(CartModel(
-    //     service: service.service, id: service.id, count: service.count));
-  }
+  Future<void> sendService(CartEntity service) async {}
 }
 
 @riverpod

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopapp/core/constants/home_constants/service_constants.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
-import 'package:shopapp/features/cart/data/models/cart_model.dart';
-import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
 import 'package:shopapp/features/home/presentation/providers/service_provider.dart';
 import 'package:shopapp/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/car_clean_tab_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/cart_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/deep_clean_tab_bar.dart';
 import 'package:shopapp/features/home/presentation/widgets/maid_services_tab_bar_widget.dart';
+import 'package:shopapp/features/z-cart/presentation/providers/cart_provider.dart';
 
 class CleanServicePage extends ConsumerWidget {
   static const routePath = '/cleansevice';
@@ -100,15 +99,8 @@ class CleanServicePage extends ConsumerWidget {
             ],
           ),
           bottomNavigationBar: Padding(
-              padding: const EdgeInsets.all(16.0), child: contentToShow),
+              padding: EdgeInsets.all(theme.spaces.space_200),
+              child: contentToShow),
         ));
   }
 }
-
-final cartItemsProvider = Provider<List<CartModel>>((ref) {
-  return [];
-});
-
-final cartItemsLengthProvider = Provider<int>((ref) {
-  return ref.watch(cartItemsProvider).length;
-});

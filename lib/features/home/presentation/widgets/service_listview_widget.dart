@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shopapp/features/cart/data/models/cart_model.dart';
-import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
+import 'package:shopapp/features/z-cart/data/models/cart_model.dart';
+import 'package:shopapp/features/z-cart/presentation/providers/cart_provider.dart';
 import 'package:shopapp/features/home/domain/entites/service_entity.dart';
 
 import '../../../../core/themes/app_theme.dart';
@@ -35,8 +35,6 @@ class ServiceListviewWidget extends HookConsumerWidget {
           child: Stack(
             children: [
               Container(
-                height: MediaQuery.sizeOf(context).height / 6.50,
-                width: MediaQuery.sizeOf(context).width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
@@ -45,7 +43,10 @@ class ServiceListviewWidget extends HookConsumerWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                          left: theme.spaces.space_200, right: 15),
+                          left: theme.spaces.space_200,
+                          right: 15,
+                          top: theme.spaces.space_100,
+                          bottom: theme.spaces.space_100),
                       child: Container(
                         height: MediaQuery.sizeOf(context).height / 9,
                         width: MediaQuery.sizeOf(context).width / 4.20,
@@ -58,7 +59,8 @@ class ServiceListviewWidget extends HookConsumerWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: theme.spaces.space_250),
+                      padding: EdgeInsets.symmetric(
+                          vertical: theme.spaces.space_100),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -76,7 +78,7 @@ class ServiceListviewWidget extends HookConsumerWidget {
                                     left: theme.spaces.space_100),
                                 child: Text(
                                   "(4.2/5) 23 orders",
-                                  style: TextStyle(
+                                  style: theme.typography.h200.copyWith(
                                       color: theme.colors.textDisabled),
                                 ),
                               ),
@@ -93,8 +95,7 @@ class ServiceListviewWidget extends HookConsumerWidget {
                           ),
                           Text(
                             "₹ ${services[index].price.toDouble()}",
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w800),
+                            style: theme.typography.h700,
                           )
                         ],
                       ),
@@ -119,7 +120,7 @@ class ServiceListviewWidget extends HookConsumerWidget {
                     ),
                     child: Ink(
                         height: MediaQuery.of(context).size.height / 23,
-                        width: MediaQuery.of(context).size.width / 3.5,
+                        width: MediaQuery.of(context).size.width / 3.1,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(15),

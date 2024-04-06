@@ -1,13 +1,15 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shopapp/core/constants/cart_constant/cart_constant.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
-import 'package:shopapp/features/cart/presentation/providers/cart_provider.dart';
-import 'package:shopapp/features/cart/presentation/widgets/cart_listview_widget.dart';
 import 'package:shopapp/features/home/presentation/providers/service_provider.dart';
 import 'package:shopapp/features/home/presentation/widgets/app_bar_widget.dart';
+import 'package:shopapp/features/home/presentation/widgets/book_solt_widget.dart';
 import 'package:shopapp/features/home/presentation/widgets/loading_widget.dart';
+import 'package:shopapp/features/z-cart/presentation/providers/cart_provider.dart';
+import 'package:shopapp/features/z-cart/presentation/widgets/bill_details_widget.dart';
+import 'package:shopapp/features/z-cart/presentation/widgets/cart_listview_widget.dart';
+import 'package:shopapp/features/z-cart/presentation/widgets/coupon_code_widget.dart';
 
 class CartPage extends ConsumerWidget {
   static const routePath = '/cart';
@@ -55,6 +57,7 @@ class CartPage extends ConsumerWidget {
 
     final theme = AppTheme.of(context);
     return Scaffold(
+      // extendBody: true,
       backgroundColor: theme.colors.textSubtle,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(theme.spaces.space_700),
@@ -129,7 +132,7 @@ class CartPage extends ConsumerWidget {
                             Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(right: 60),
+                                  padding: const EdgeInsets.only(right: 70),
                                   child: Text(
                                     '₹500',
                                     style: theme.typography.h300
@@ -140,10 +143,10 @@ class CartPage extends ConsumerWidget {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       gradient: theme.colors.secondary),
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.add,
                                     size: 20,
-                                    color: Colors.white,
+                                    color: theme.colors.textInverse,
                                   ),
                                 )
                               ],
@@ -155,10 +158,62 @@ class CartPage extends ConsumerWidget {
                   },
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: theme.spaces.space_100,
+            ),
+            const CouponCodeWidget(),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: theme.spaces.space_300,
+                  vertical: theme.spaces.space_200),
+              child: Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: theme.colors.secondary),
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: Center(
+                        child: Icon(
+                          Icons.check,
+                          color: theme.colors.textInverse,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: theme.spaces.space_300),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Your Wallet balance is ₹125',
+                          style: theme.typography.h100
+                              .copyWith(color: theme.colors.text),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          'in the order',
+                          style: theme.typography.h100
+                              .copyWith(color: theme.colors.text),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const BillDetailsWidget()
           ],
         ),
       ),
+      bottomNavigationBar: Padding(
+          padding: EdgeInsets.all(theme.spaces.space_200),
+          child: const BookSoltWidget()),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shopapp/core/themes/app_theme.dart';
 import 'package:shopapp/features/Authentication/presentation/page/login_button_widget.dart';
@@ -16,7 +15,6 @@ class OtpVerificationPage extends HookConsumerWidget {
     final theme = AppTheme.of(context);
     final data = ref.read(authProvider.notifier);
     final otpController = useTextEditingController();
-    // final data = ref.watch(loginConstantsProvider);
 
     return Scaffold(
       backgroundColor: theme.colors.textDisabled,

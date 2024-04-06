@@ -37,7 +37,7 @@ class SettingWidget extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: theme.spaces.space_300,
-                  color: theme.colors.textSubtle,
+                  color: theme.colors.textDisabled,
                 ),
               ),
               SizedBox(width: theme.spaces.space_300),

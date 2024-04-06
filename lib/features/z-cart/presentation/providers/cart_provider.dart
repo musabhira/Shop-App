@@ -6,6 +6,7 @@ part 'cart_provider.g.dart';
 
 @riverpod
 class Cart extends _$Cart {
+  @override
   void build() {}
 
   /// Add a new service to the cart

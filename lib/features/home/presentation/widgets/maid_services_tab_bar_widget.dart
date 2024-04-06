@@ -14,7 +14,6 @@ class MaidServicesTapbarWidget extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Cannot fetch services'),
-          // Text(''),
           IconButton(
             onPressed: () {
               ref.invalidate(getServiceProvider);
